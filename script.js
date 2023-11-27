@@ -41,7 +41,7 @@ function parseCSV(csvData) {
 document.getElementById("Button1").addEventListener("click", onButtonClick);
 
 
-function getRandomElementFromCSV(csvUrlPath) {
+async function getRandomElementFromCSV(csvUrlPath) {
     return fetchCSV(csvUrlPath)
         .then(csvData => {
             const parsedCSV = parseCSV(csvData);
