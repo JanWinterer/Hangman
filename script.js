@@ -1,4 +1,4 @@
-const csvUrlPath = "https://github.com/JanWinterer/Hangman/blob/9e3f49e58445cd61fd0a7361e2bc3dcaffb078c3/hangman_words.csv"
+const csvUrlPath = "https://raw.githubusercontent.com/JanWinterer/Hangman/main/hangman_words.csv"
 
 function onButtonClick() {
     var hangmanStr = getRandomElementFromCSV(csvUrlPath)
