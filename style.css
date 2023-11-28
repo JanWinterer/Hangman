@@ -10,7 +10,24 @@ head {
     font-size: 32px;
 }
 
+.haveFun {
+    z-index: 1;
+    position: relative;
+    margin: auto;
+    width: 50%;
+    padding: 22px;
+}
+
+.haveFunText {
+    text-align: center;
+    color: black;
+    font-size: 22px;
+    text-align: center;
+}
+
 .center {
+    z-index: 2;
+    position: relative;
     margin: auto;
     width: 50%;
     border: 3px solid black;
@@ -28,6 +45,9 @@ head {
     font-size: 14px;
 }
 
+
+
 h1 {
     color: navy;
 }
+
