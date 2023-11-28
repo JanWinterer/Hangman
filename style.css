@@ -34,18 +34,16 @@ head {
     padding: 10px;
 }
 
-.first {
+.changed {
     text-align: center; 
-    color: blue;
-    font-size: 16px;
+    color: black;
+    font-size: 30px;
 }
 
 .second {
     color: red;
     font-size: 14px;
 }
-
-
 
 h1 {
     color: navy;
