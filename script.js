@@ -8,12 +8,16 @@ var targetWord = "";
 var guessedWord = "";
 var HP = 10;  
 
+function isAlpha(char) {
+    return /^[a-zA-Z]$/.test(char);
+}
+
 function initGameInteractiveContent() {
     document.getElementById("haveFun").style.display = "block";
     document.getElementById("center").style.display = "block";
     document.getElementById("inText").style.display = "block";
 
-    document.getElementById("inText").addEventListener("keypress", function(event) {
+    document.getElementById("inputBox").addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             handleEnterPress();
         }
@@ -22,41 +26,48 @@ function initGameInteractiveContent() {
         }
     });
 
-    guessedWord = "_".repeat(word.length);
+    guessedWord = "_".repeat(targetWord.length);
 
     document.getElementById("changed").textContent = guessedWord;
 }
 
 async function onButtonClickInit() {
     try {
-        targetWord = await getRandomElementFromCSV(csvParsed);
+        targetWord = await getRandomElementFromCSV(csvParsed).toLowerCase();
         initGameInteractiveContent();
-        playGame();
     } catch (error) {
         console.error("Error fetching or processing the CSV data: ", error);
-        document.getElementById("changed").textContent = "Error fetching word.";
     }
 }
 
 // Returns a random element from the CSV
 async function getRandomElementFromCSV(csvParsed) {
-    randomIndex = Math.floor(Math.random() * csvParsed.length);
-    randomValue = csvParsed[randomIndex];
-    return randomValue;
+    try {
+        let randomIndex = Math.floor(Math.random() * csvParsed.length);
+        let randomValue = csvParsed[randomIndex];
+        return randomValue;    
+    } catch (error) {
+        console.error("Error fetching or processing the CSV data: ", error);
+        document.getElementById("changed").textContent = "Error fetching word.";
+        alert("Error fetching word from CSV.")
+    }
+    
 }
 
 
 function handleEnterPress() {
-    var textBoxValue = document.getElementById("inText").value;
+    var textBoxValue = document.getElementById("inputBox").value.toLowerCase();
 
-    document.getElementById("inText").value = ""; //clear the text box
+    document.getElementById("inputBox").value = ""; //clear the text box
     
-    if (String(textBoxValue).length != 1) { 
-        alert("Please enter a single character!"); //assert that the user entered a single character
+    alert(textBoxValue);
+
+    if (textBoxValue.length > 1 || !(isAlpha(textBoxValue))) { 
+        alert("Please enter a single valid character!"); //assert that the user entered a single character
         return;
     }
     
-    if (enteredChars.includes(textBoxValue.value)) {
+    if (enteredChars.includes(textBoxValue)) {
         alert("You've already tried that!"); //no duplicate characters
     } else {
         enteredChars.push(textBoxValue); //handle new char guess
